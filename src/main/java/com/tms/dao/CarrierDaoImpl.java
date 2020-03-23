@@ -58,7 +58,16 @@ public class CarrierDaoImpl implements CarrierDAO {
 		Transaction tx = sess.beginTransaction();
 		Carrier oldCarrier = sess.byId(Carrier.class).load(id);
 		oldCarrier.setCarrierName(carrier.getCarrierName());
-		oldCarrier.setPassword(carrier.getPassword());
+		oldCarrier.setAddress(carrier.getAddress());
+		oldCarrier.setCity(carrier.getCity());
+		oldCarrier.setState(carrier.getState());
+		oldCarrier.setZipcode(carrier.getZipcode());
+		oldCarrier.setPocFirstName(carrier.getPocFirstName());
+		oldCarrier.setPocLastName(carrier.getPocLastName());
+		oldCarrier.setPhoneNumber(carrier.getPhoneNumber());
+		oldCarrier.setFaxNumber(carrier.getFaxNumber());
+		oldCarrier.setNumberOfTrucks(carrier.getNumberOfTrucks());
+		oldCarrier.setClassification(carrier.getClassification());
 		sess.flush();
 		tx.commit();
 	}
