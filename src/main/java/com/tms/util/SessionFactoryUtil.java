@@ -56,6 +56,8 @@ public class SessionFactoryUtil {
 			settings.put("hibernate.connection.username", USERNAME);
 			settings.put("hibernate.connection.password", PASSWORD);
 			
+			System.out.println(settings);
+			
 			
 			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
 			Metadata metadata = new MetadataSources(standardRegistry)
