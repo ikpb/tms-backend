@@ -3,19 +3,12 @@ package com.tms.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.tms.models.Carrier;
 
 public class SessionFactoryUtil {
 	private static SessionFactory sf;
@@ -62,13 +55,14 @@ public class SessionFactoryUtil {
 			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
 			Metadata metadata = new MetadataSources(standardRegistry)
 					.addAnnotatedClass(com.tms.models.Carrier.class)
+					.addAnnotatedClass(com.tms.models.Order.class)
 					.getMetadataBuilder()
 					.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
 					.build();
 			sf = metadata.getSessionFactoryBuilder().build();
 		}
 	}
-	
+
 	public SessionFactory getSessionFactory() {
 		return this.sf;
 	}
